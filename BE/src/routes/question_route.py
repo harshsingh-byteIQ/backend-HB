@@ -10,14 +10,6 @@ QuestionRoute = APIRouter()
 @QuestionRoute.post("/questions/", response_model=list[QuestionOut])
 def create_questions(payload: QuestionBulkCreate, db: Session = Depends(get_db)):
     return create_question(payload, db)
-# questions = [Question(content=q.content) for q in payload.questions]
-#     db.add_all(questions)
-#     db.commit()
-#     for q in questions:
-#         db.refresh(q)
-#     return questions
-
-
 
 @QuestionRoute.delete("/questions/{question_id}")
 def delete_question(question_id: int, db: Session = Depends(get_db)):

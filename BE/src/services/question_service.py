@@ -1,3 +1,4 @@
+from src.schemas.database_schema import User
 from src.schemas.question_schema import Question
 from fastapi import HTTPException
 
@@ -16,7 +17,7 @@ def delete_respective_question(question_id, db):
     try:
         question = db.query(Question).filter(Question.question_id == question_id).first()
         if not question:
-            raise HTTPException(status_code=404, detail="Question not found")
+            raise HTTPException(status_code=404 , detail="Question not found")
         db.delete(question)
         db.commit()
         return {"message": "Question deleted successfully"}

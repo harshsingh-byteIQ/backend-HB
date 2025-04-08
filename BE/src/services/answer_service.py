@@ -2,10 +2,14 @@ from src.models.answer_modals import AnswerOut, AnswerCreate
 from fastapi import FastAPI, Depends, HTTPException , APIRouter
 from sqlalchemy.orm import Session
 from src.schemas.answer_schema import Answer
+from src.schemas.database_schema import User
 from src.schemas.question_schema import Question
 
 def submitted_answer(payload , db):
     try:
+        user = db.query(User).filter(payload.user_id == User.id).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
         question = db.query(Question).filter(Question.question_id == payload.question_id).first()
         if not question:
             raise HTTPException(status_code=404, detail="Question does not exist")
