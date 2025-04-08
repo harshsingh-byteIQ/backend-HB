@@ -1,0 +1,16 @@
+fastapi
+pydantic
+requests
+uvicorn
+python-decouple
+starlette
+python-dotenv~=1.0.0
+python-multipart
+passlib
+PyJWT
+pandas
+bcrypt
+debugpy
+email-validator
+sqlalchemy
+psycopg2
