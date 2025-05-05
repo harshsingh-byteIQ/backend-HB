@@ -20,7 +20,7 @@ AppointmentBase.metadata.create_all(bind=engine)
 QuestionBase.metadata.create_all(bind=engine)
 AnswerBase.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI() 
 
 app.add_middleware(
     CORSMiddleware,
