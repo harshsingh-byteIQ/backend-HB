@@ -21,3 +21,4 @@ typing-extensions==4.13.0
 ytmusicapi==1.10.2
 elevenlabs==1.55.0
 google-generativeai==0.8.4
+setuptools==80.3.1
