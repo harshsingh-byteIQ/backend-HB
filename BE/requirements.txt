@@ -13,7 +13,7 @@ bcrypt
 debugpy
 email-validator
 sqlalchemy
-psycopg2
+psycopg2-binary
 cachetools==5.5.2
 google-api-python-client==2.166.0
 logging==0.4.9.6
