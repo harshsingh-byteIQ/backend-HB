@@ -1,6 +1,6 @@
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
-from fastapi import FastAPI , WebSocket , WebSocketDisconnect
+from fastapi import FastAPI 
 from src.routes.answer_route import AnswerRoute
 from src.routes.auth_route import AuthRoute
 from src.routes.appointments_route import Appointment_route
@@ -11,6 +11,8 @@ from src.schemas.question_schema import QuestionBase
 from src.utils.database import engine
 from src.schemas.database_schema import Base
 from src.schemas.appointments_schema import AppointmentBase
+from src.utils.manage_emails import api_router
+from src.routes.modal_router import model_router
 
 
 Base.metadata.create_all(bind=engine)
@@ -29,11 +31,13 @@ app.add_middleware(
 )
 
 
-app.include_router(AuthRoute)
-app.include_router(Appointment_route)
-app.include_router(UserRoute)
-app.include_router(QuestionRoute)
-app.include_router(AnswerRoute)
+app.include_router(AuthRoute , tags=["auth"])
+app.include_router(Appointment_route , tags=["appointments"])
+app.include_router(UserRoute , tags=["users"])
+app.include_router(QuestionRoute , tags=["question"])
+app.include_router(AnswerRoute , tags=["answers"])
+app.include_router(api_router , tags=["emails"])
+app.include_router(model_router , tags=["models"])
 
 
 if __name__ == "__main__":

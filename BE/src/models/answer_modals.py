@@ -7,12 +7,12 @@ class AnswerCreate(BaseModel):
     answer: str
 
 class AnswerOut(BaseModel):
-    answer_id: int
-    question_id: int
-    user_id: int
-    answer: str
-
+    message : str
+    status_code : int 
+    data : List
     model_config = {
         "from_attributes": True
     }
 
+class AnswerBulkCreate(BaseModel):
+    answer: List[AnswerCreate]

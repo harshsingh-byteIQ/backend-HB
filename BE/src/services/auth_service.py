@@ -19,12 +19,14 @@ def register_user(user , db):
             contact_no=user.contact_no,
             password=hashed_password,
             created_at=datetime.utcnow(),
-            role=user.role
+            role=user.role,
+            selected_slots= user.selected_slots
         )
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
-        return {"message": "User registered successfully"}
+        user = UserLogin(email=user.email, password=user.password)
+        return verify_user(user,db)
     except Exception as e:
          return error_response(error=e.detail , message="something went wrong" , status_code = e.status_code)
 

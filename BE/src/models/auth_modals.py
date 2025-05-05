@@ -1,5 +1,5 @@
 from pydantic import BaseModel,EmailStr
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union , List , Dict
 from enum import Enum
 
 class UserLogin(BaseModel):
@@ -12,6 +12,13 @@ class UserRole(str, Enum):
     caretaker = "caretaker"
     patient = "patient"
 
+DEFAULT_SLOTS = [
+        {
+        "day" : '',
+        "startTime" : '',
+        "endTime" : '',
+    }]
+
 class UserRegister(BaseModel):
     first_name: str
     last_name: str
@@ -19,6 +26,7 @@ class UserRegister(BaseModel):
     contact_no: str
     password: str
     role: UserRole
+    selected_slots : Optional[List[Dict[str,str]]] = DEFAULT_SLOTS
     
 class TokenData(BaseModel):
     email: str    

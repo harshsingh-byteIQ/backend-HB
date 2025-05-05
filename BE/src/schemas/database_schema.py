@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, String, Enum, DateTime
+from sqlalchemy import Column, Integer, String, Enum, DateTime , JSON
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 from sqlalchemy.orm import relationship
 import enum
+from typing import List , Dict
 from sqlalchemy import Column, Integer, String, Enum as SQLAlchemyEnum, ForeignKey, DateTime , ARRAY,  func
 
 Base = declarative_base()
@@ -24,3 +25,5 @@ class User(Base):
     password = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
     role = Column(Enum(UserRole), nullable=False)  # Enum field
+    selected_slots = Column(JSON, nullable=True)
+    
